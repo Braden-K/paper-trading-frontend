@@ -4,6 +4,7 @@ import { Account } from "../types/types";
 
 interface AccountState {
   accounts: Account[];
+  chosenAccount: Account | null;
 }
 
 const initialState: AccountState = {
@@ -13,8 +14,10 @@ const initialState: AccountState = {
     {
       dateCreated: "7/6/24",
       accountName: "account 1",
+      holdings: [],
     },
   ],
+  chosenAccount: null,
 };
 
 export const accountSlice = createSlice({
@@ -27,8 +30,12 @@ export const accountSlice = createSlice({
     pushAccount: (state, action: PayloadAction<Account>) => {
       state.accounts.push(action.payload);
     },
+    setChosenAccount: (state, action: PayloadAction<Account>) => {
+      state.chosenAccount = action.payload;
+    },
   },
 });
 
-export const { loadAccounts, pushAccount } = accountSlice.actions;
+export const { loadAccounts, pushAccount, setChosenAccount } =
+  accountSlice.actions;
 export default accountSlice.reducer;

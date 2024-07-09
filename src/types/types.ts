@@ -7,6 +7,7 @@ export type User = {
 export type Account = {
   dateCreated: string;
   accountName: string;
+  holdings: Holding[];
 };
 
 export type Transaction = {
