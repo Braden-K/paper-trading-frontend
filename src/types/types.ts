@@ -23,3 +23,8 @@ export type Holding = {
   totalDollarGain: number;
   totalPercentGain: number;
 };
+
+export type ModalStatus = {
+  showSearchOptionModal: boolean;
+  searchOptionModalSymbol: string;
+};

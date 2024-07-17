@@ -1,16 +1,35 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setModalStatus } from "../redux/modalSlice";
+import { fetchPriceInfo } from "../dataApi/query";
 
 export const SearchBar = () => {
-  const [text, setText] = useState<string>("");
-  console.log(text);
+  const [symbol, setSymbol] = useState<string>("");
+  const dispatch = useDispatch();
+  console.log(symbol);
 
   const onInputChange = () => {
     const inputField = document.getElementById("quoteSearch");
     if (inputField) {
-      setText((inputField as HTMLInputElement).value);
+      setSymbol((inputField as HTMLInputElement).value);
     } else {
-      setText("");
+      setSymbol("");
     }
+  };
+
+  const onClickSearch = async () => {
+    const stockData = await fetchPriceInfo(symbol);
+    console.log(stockData);
+
+    // TODO: api call for stock FIRST
+    dispatch(
+      setModalStatus({
+        modalStatus: {
+          showSearchOptionModal: true,
+          searchOptionModalSymbol: "AAPL",
+        },
+      })
+    );
   };
 
   return (
@@ -22,7 +41,7 @@ export const SearchBar = () => {
         placeholder="Search stock quote..."
         onChange={onInputChange}
       />
-      <button>
+      <button onClick={onClickSearch}>
         <div className="text-white border border-gray-600 rounded-md pl-2 pr-2">
           Search
         </div>

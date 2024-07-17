@@ -1,5 +1,6 @@
 import { AccountsStack } from "../components/AccountsStack";
 import { HoldingsTable } from "../components/HoldingsTable";
+import { SearchModal } from "../components/SearchModal";
 import { useAppSelector } from "../redux/hooks";
 import { RootState } from "../redux/store";
 
@@ -8,6 +9,7 @@ export const Home = () => {
 
   return (
     <div className="w-full h-screen bg-gray-800 justify-center align-middle text-white">
+      <SearchModal />
       <div className="grid grid-cols-12">
         <div className="col-span-2 text-white p-4">
           <AccountsStack

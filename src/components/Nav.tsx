@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 import { SearchBar } from "./SearchBar";
-import { useState } from "react";
 
 export const Nav = () => {
   return (
-    <div className="w-full h-16 bg-gray-900">
+    <div className="w-full h-16 bg-gray-900 z-50">
       <nav className="h-full flex items-center justify-between px-4">
         <div className="text-white">Paper Trading</div>
         <SearchBar />
