@@ -3,6 +3,7 @@ import userReducer from "./userSlice";
 import accountReducer from "./accountSlice";
 import holdingsReducer from "./holdingsSlice";
 import modalReducer from "./modalSlice";
+import viewedStockReducer from "./viewedStockSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     accounts: accountReducer,
     holdings: holdingsReducer,
     modal: modalReducer,
+    viewedStock: viewedStockReducer,
   },
 });
 

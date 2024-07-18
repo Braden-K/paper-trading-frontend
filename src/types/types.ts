@@ -28,3 +28,15 @@ export type ModalStatus = {
   showSearchOptionModal: boolean;
   searchOptionModalSymbol: string;
 };
+
+type NumNull = number | null;
+
+export type StockData = {
+  currentPrice: NumNull;
+  change: NumNull;
+  percentChange: NumNull;
+  dayHigh: NumNull;
+  dayLow: NumNull;
+  dayOpen: NumNull;
+  prevClose: NumNull;
+} | null;

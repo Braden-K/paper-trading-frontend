@@ -8,6 +8,9 @@ export const SearchModal = () => {
   const modalStatus = useAppSelector(
     (state: RootState) => state.modal.modalStatus
   );
+  const viewedStock = useAppSelector(
+    (state: RootState) => state.viewedStock.stockData
+  );
   const dispatch = useAppDispatch();
   const [transactionQuantity, setTransactionQuantity] = useState<number>(0);
   console.log(transactionQuantity);
@@ -41,9 +44,27 @@ export const SearchModal = () => {
       {modalStatus.showSearchOptionModal ? (
         <div className="fixed inset-0 flex flex-col items-center bg-black bg-opacity-0 z-25 rounded-lg">
           <div className="flex flex-col w-1/3 h-1/3 mt-20 bg-slate-900 rounded-lg pt-2 pb-2 pl-3 pr-3 shadow-lg justify-between items-center">
-            <h1 className="font-bold text-3xl text-center">
-              {modalStatus.searchOptionModalSymbol}
-            </h1>
+            <div className="flex items-end space-x-5">
+              {viewedStock !== null && viewedStock.currentPrice !== null ? (
+                <h2 className="text-gray-400">${viewedStock.currentPrice}</h2>
+              ) : (
+                <h2 className="text-gray-400">N/A</h2>
+              )}
+              <h1 className="font-bold text-3xl text-center">
+                {modalStatus.searchOptionModalSymbol}
+              </h1>
+              {viewedStock !== null && viewedStock.percentChange !== null ? (
+                viewedStock.percentChange >= 0 ? (
+                  <h2 className="text-green-600">
+                    +{viewedStock.percentChange}%
+                  </h2>
+                ) : (
+                  <h2 className="text-red-600">{viewedStock.percentChange}%</h2>
+                )
+              ) : (
+                <h2 className="text-gray-400">N/A</h2>
+              )}
+            </div>
             <label className="inline-flex items-center cursor-pointer">
               <input type="checkbox" value="" className="sr-only peer" />{" "}
               <span className="mr-3 text-sm font-medium text-gray-900 dark:text-gray-300">
